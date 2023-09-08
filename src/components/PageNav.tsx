@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import style from "./PageNav.module.css"
+import Logo from "./Logo"
 export default function PageNav(): JSX.Element {
   return (
     <nav className={style.nav}>
+      <Logo />
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/product">Product</NavLink>
         </li>
         <li>
-          <Link to="/product">Product</Link>
+          <NavLink to="/pricing">Pricing</NavLink>
         </li>
         <li>
-          <Link to="/pricing">Pricing</Link>
+          <NavLink to="/login" className={style.ctaLink}>Login</NavLink>
         </li>
       </ul>
     </nav>
