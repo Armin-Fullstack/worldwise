@@ -1,0 +1,7 @@
+.nav {
+  background-color: chocolate;
+}
+.nav ul {
+  display: flex;
+  justify-content: space-between;
+}
