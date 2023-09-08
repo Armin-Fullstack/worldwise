@@ -1,15 +1,13 @@
-
-
+import SideBar from "../components/SideBar";
+import Map from "../components/Map";
 import styles from "./AppLayout.module.css";
 
-function AppLayout() {
+export default function AppLayout(): JSX.Element {
   return (
     <div className={styles.app}>
-      {/* <Sidebar />
+      <SideBar />
       <Map />
-      <User /> */}
     </div>
   );
 }
 
-export default AppLayout;
