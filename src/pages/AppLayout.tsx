@@ -10,4 +10,3 @@ export default function AppLayout(): JSX.Element {
     </div>
   );
 }
-
