@@ -3,18 +3,29 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "re
 import styles from "./Map.module.css";
 import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesProvider";
+import { useGeolocation } from "../hooks/useGeoLocation";
+import Button from "./Button";
 export default function Map(): JSX.Element {
   const [searchParams] = useSearchParams();
   const [mapPosition, setMapPosition] = useState([40, 30]);
   const { cities } = useCities();
+  const {isLoading: isLoadingPosition, position: geoLocationPosition, getPosition} = useGeolocation()
+
+
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
 
   useEffect(() => {
     if(lat && lng) setMapPosition([lat , lng])
   } , [lat , lng])
+
+  useEffect(() => {
+    if(geoLocationPosition) setMapPosition([geoLocationPosition.lat , geoLocationPosition.lng])
+  } , [geoLocationPosition])
+
   return (
     <div className={styles.mapContainer}>
+       {!geoLocationPosition && <Button type="position" onClick={getPosition}>{isLoadingPosition ? "Loading..." : "Use your position"}</Button>}
       <MapContainer
         className={styles.map}
         center={mapPosition}
