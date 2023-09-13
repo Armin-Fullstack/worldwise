@@ -12,6 +12,7 @@ import City from "./components/City";
 import Form from "./components/Form";
 import { CitiesProvider } from "./contexts/CitiesProvider";
 import { UserAuthProvider } from "./contexts/UserAuthProvider";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 export default function App(): JSX.Element {
   return (
@@ -23,7 +24,14 @@ export default function App(): JSX.Element {
             <Route path="product" element={<Product />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="login" element={<Login />} />
-            <Route path="app" element={<AppLayout />}>
+            <Route
+              path="app"
+              element={
+                <ProtectedRoutes>
+                  <AppLayout />
+                </ProtectedRoutes>
+              }
+            >
               <Route index element={<Navigate replace to="cities" />} />
               <Route path="cities" element={<CityList />} />
               <Route path="cities/:id" element={<City />} />
